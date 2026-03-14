@@ -1,39 +1,58 @@
 cmake_minimum_required(VERSION 4.1.1)
 
 #https://github.com/Kitware/CMake/blob/v4.1.1/Help/dev/experimental.rst
+cmake_minimum_required(VERSION 4.1.1)
+
+#https://github.com/Kitware/CMake/blob/v4.1.1/Help/dev/experimental.rst
 
 set(CMAKE_EXPERIMENTAL_CXX_IMPORT_STD "d0edc3af-4c50-42ea-a356-e2862fe7a444")
 set(CMAKE_CXX_MODULE_STD ON)
 
-project(sc1 LANGUAGES CXX)
+project(selectsystem LANGUAGES CXX)
 
 # set(MODULE_LIB_DIR1 /opt/utils/modules)  # 模块库的目录的设置
-add_executable(sc1
+add_executable(sc
     #math.cpp                              # 模块实现单元
     main.cpp
 
+
 )
 
-set(MODULE_INTERFACE_FILES
+set(DOMAIN_PRITION
     #${MODULE_LIB_DIR1}/utils.cppm         #添加模块库的模块接口单元
     #math.cppm                             # 模块接口单元
     domain.user.cppm
-    domain.student.cppm
     domain.teacher.cppm
+    domain.student.cppm
     domain.secretary.cppm
-    domain.course.cppm
     domain.enrollment.cppm
+    domain.course.cppm
+)
+
+set(SERVICE_PRITION
     courseservice.cppm
 )
 
-source_group("Module Interfaces" FILES ${MODULE_INTERFACE_FILES})
-target_sources(sc1  PRIVATE FILE_SET cxx_modules TYPE CXX_MODULES
+set(REPOSITORY_PRITION
+
+)
+
+set(UI_PRITION
+
+)
+
+source_group("Domain Files" FILES ${DOMAIN_PRITION})
+source_group("Service Files" FILES ${SERVICE_PRITION})
+source_group("Repository Files" FILES ${REPOSITORY_PRITION})
+source_group("Ui Files" FILES ${UI_PRITION})
+
+target_sources(sc  PRIVATE FILE_SET cxx_modules TYPE CXX_MODULES
     BASE_DIRS                              # 配置BASE_DIRS，用于组织构建输出目录，以便构建不同目录中(同名的)模块文件.
         #${MODULE_LIB_DIR1}
         ${CMAKE_CURRENT_SOURCE_DIR}
-    FILES ${MODULE_INTERFACE_FILES}
+    FILES ${DOMAIN_PRITION} ${SERVICE_PRITION} ${REPOSITORY_PRITION} ${UI_PRITION}
 )
-target_compile_features(sc1 PRIVATE cxx_std_23)
+target_compile_features(sc PRIVATE cxx_std_23)
 
 
 
