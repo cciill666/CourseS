@@ -1,3 +1,9 @@
+
+// Module
+// File: courseservice.cppm  Version: 1.0 License: AGPLv3
+//Created: DuanEnlai    2026-03-14 13:23:21
+// Description:基类
+//
 export module domain.user;
 
 import std;
@@ -5,6 +11,7 @@ import std;
 using std::print;
 using std::string;
 using std::vector;
+
 export class User
 {
 protected:

@@ -1,3 +1,10 @@
+
+// Module
+// File: courseservice.cppm  Version: 1.0 License: AGPLv3
+//Created: DuanEnlai    2026-03-14 13:23:21
+// Description:选课记录/成绩
+//
+
 export module domain.enrollment;
 
 import std;
