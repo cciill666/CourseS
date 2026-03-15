@@ -1,0 +1,28 @@
+# 选课系统 selectsystem（简称sc）
+  项目目标
+开发一款基于C++23模块化特性的选课系统，实现用户（学生、教师、教务秘书）与选课、课程、学籍等核心业务的交互，通过模块化设计提升代码的可维护性与扩展性。
+
+  项目结构
+sc/
+├── main.cpp               // 程序入口
+├── CMakeLists.txt         // 构建配置文件
+├── .gitignore             // Git忽略规则文件
+├── domain.xxx.cppm        // 领域层模块（用户、课程、学籍等）
+├── courseservice.cppm     // 服务层模块（课程业务逻辑）
+├── repository.cppm        // 仓储层模块（数据操作）
+├── ui.cppm                // UI层模块（交互逻辑）
+
+  模块划分（按功能分组）
+| 模块分组       | 模块文件                          | 功能说明                     |
+
+| Domain Files   | domain.user.cppm、domain.teacher.cppm、domain.student.cppm、domain.secretary.cppm、domain.enrollment.cppm、domain.course.cppm | 领域模型（用户、课程、学籍等实体定义） |
+| Service Files  | courseservice.cppm                | 业务逻辑层（课程相关服务）|
+| Repository Files | repository.cppm                 | 数据访问层（数据存储/查询操作）|
+| Ui Files       | ui.cppm                           | 界面交互层（程序入口UI调度） |
+ 核心逻辑：通过导入`ui`模块并调用`UI::run()`启动程序，所有交互/业务逻辑均由UI模块及依赖的下层块承接。
+
+模块化构建设计
+ 领域层（Domain）：定义选课系统核心实体（用户、课程、学籍等），是业务模型的基础。
+ 服务层（Service）：封装课程相关业务逻辑（如选课、退课、课程查询），依赖领域层。
+ 仓储层（Repository）：处理数据持久化/查询逻辑，为服务层提供数据支撑。
+ UI层（Ui）：提供用户交互入口，调用服务层完成业务操作，是程序的对外接口。
